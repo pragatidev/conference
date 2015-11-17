@@ -6,6 +6,15 @@ var router = express.Router();
 // Import Speakers Model
 var Speaker = require('../models/speaker');
 
+// A simple middleware to use for all Routes and Requests
+router.use(function(req, res, next) {
+	// Give some message on the console
+	console.log('An action was performed by the server.');
+	// Is very important using the next() function, without this the
+	// Route stops here.
+	next();
+});
+
 /* GET all users. */
 router.get('/', function(req, res) {
 	// res.json({ message: 'Hello SPA, the API is working!'
@@ -71,6 +80,7 @@ router.put('/:speaker_id', function(req, res) {
 		});
 	});
 });
+
 
 
 /* DELETE specific users by id. */
